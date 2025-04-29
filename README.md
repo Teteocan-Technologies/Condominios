@@ -22,6 +22,142 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
 
 1. **Clona este repositorio:**
    ```bash
-   git clone https://github.com/tu_usuario/gestor_tareas.git
+   git clone https://github.com/jorgechacon559/Proyecto_individual.git
+   ```
 
+2. **Navega al directorio del proyecto:**
+   ```bash
+   cd gestor_tareas
+   ```
 
+3. **Instala las dependencias:**
+   Asegúrate de tener Python 3.10 o superior instalado. Luego, ejecuta:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Ejecuta la aplicación:**
+   ```bash
+   python src/main.py
+   ```
+
+---
+
+## Estructura del proyecto
+
+```
+gestor_tareas/
+├── datos/
+│   ├── tareas_pendientes.json    # Archivo JSON para almacenar tareas pendientes
+│   ├── tareas_completadas.json   # Archivo JSON para almacenar tareas completadas
+├── src/
+│   ├── main.py                   # Menú principal de la aplicación
+│   ├── utils.py                  # Funciones auxiliares para validaciones
+│   ├── gestor_tareas/
+│   │   ├── __init__.py           # Inicializador del paquete
+│   │   ├── gestor_archivos.py    # Funciones para manejar archivos JSON
+│   │   ├── gestor_tareas.py      # Lógica de negocio para manejar tareas
+│   │   ├── modelos.py            # Clase Tarea
+├── tests/
+│   ├── test_gestor_tareas.py     # Pruebas unitarias para gestor_tareas.py
+│   ├── test_gestor_archivos.py   # Pruebas unitarias para gestor_archivos.py
+│   ├── test_utils.py             # Pruebas unitarias para utils.py
+│   ├── test_modelos.py           # Pruebas unitarias para modelos.py
+├── README.md                     # Documentación del proyecto
+├── requirements.txt              # Dependencias del proyecto
+```
+
+---
+
+## Validaciones
+
+- **Prioridad:** Solo se aceptan valores numéricos entre 1 (Alta), 2 (Media) y 3 (Baja).
+- **Datos obligatorios:** El título y la descripción de la tarea no pueden estar vacíos.
+- **Índices válidos:** Al seleccionar una tarea para editar, eliminar o completar, el índice debe estar dentro del rango de tareas disponibles.
+
+---
+
+## Ejemplo de Uso
+
+### Crear una tarea
+```
+Menú de tareas de estudiante:
+1. Agregar una tarea
+2. Mostrar tareas pendientes
+3. Editar una tarea
+4. Eliminar una tarea
+5. Completar una tarea
+6. Mostrar tareas completadas
+7. Salir
+Selecciona una opción: 1
+Ingresa el título de la tarea: Estudiar para el examen
+Ingresa la descripción de la tarea: Repasar los temas de matemáticas y física
+Ingresa la prioridad de la tarea (1 = Alta, 2 = Media, 3 = Baja): 1
+Tarea agregada exitosamente.
+```
+
+### Listar tareas pendientes
+```
+Menú de tareas de estudiante:
+1. Agregar una tarea
+2. Mostrar tareas pendientes
+3. Editar una tarea
+4. Eliminar una tarea
+5. Completar una tarea
+6. Mostrar tareas completadas
+7. Salir
+Selecciona una opción: 2
+
+Tus tareas pendientes (1 en total) son:
+1. [Alta] Estudiar para el examen: Repasar los temas de matemáticas y física (Pendiente)
+```
+
+### Completar una tarea
+```
+Menú de tareas de estudiante:
+1. Agregar una tarea
+2. Mostrar tareas pendientes
+3. Editar una tarea
+4. Eliminar una tarea
+5. Completar una tarea
+6. Mostrar tareas completadas
+7. Salir
+Selecciona una opción: 5
+
+Tus tareas pendientes (1 en total) son:
+1. [Alta] Estudiar para el examen: Repasar los temas de matemáticas y física (Pendiente)
+Ingresa el número de la tarea que deseas completar: 1
+Tarea 'Estudiar para el examen' marcada como completada.
+```
+
+---
+
+## Pruebas
+
+Este proyecto incluye pruebas unitarias para garantizar el correcto funcionamiento de cada componente. Las pruebas están ubicadas en la carpeta `tests/`.
+
+### Ejecutar todas las pruebas:
+Desde el directorio raíz del proyecto, ejecuta:
+```
+python -m unittest discover tests
+```
+
+---
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request. Asegúrate de incluir pruebas para cualquier funcionalidad nueva.
+
+---
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+---
+
+## Créditos
+
+Este proyecto fue desarrollado por:
+- **Nombre del desarrollador:** Jorge Alejandro Chacón Zárate
+- **Contacto:** jorgechaconzarate@gmail.com
