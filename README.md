@@ -1,7 +1,7 @@
-# Gestor de Tareas
+# Gestor de tareas
 
 ## Descripción funcional
-El **Gestor de Tareas** es una aplicación basada en consola que permite a los usuarios gestionar sus tareas de manera eficiente. Las tareas se almacenan en formato JSON y tienen los siguientes atributos:
+El **Gestor de tareas** es una aplicación basada en consola que permite a los usuarios gestionar sus tareas de manera eficiente. Las tareas se almacenan en formato JSON y tienen los siguientes atributos:
 - **Título**: Breve descripción de la tarea.
 - **Descripción**: Detalles adicionales de la tarea.
 - **Prioridad**: Nivel de importancia (1 = Alta, 2 = Media, 3 = Baja).
@@ -145,7 +145,7 @@ python -m unittest discover tests
 
 ## Contribuciones
 
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request. Asegúrate de incluir pruebas para cualquier funcionalidad nueva.
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request, y asegúrate de incluir pruebas para cualquier funcionalidad nueva.
 
 ---
 
