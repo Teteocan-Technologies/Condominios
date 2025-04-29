@@ -17,8 +17,7 @@ El **Gestor de Tareas** es una aplicación basada en consola que permite a los u
 
 ---
 
-## Instrucciones de instalación
-Sigue estos pasos para instalar y ejecutar el proyecto:
+## Instalación
 
 1. **Clona este repositorio:**
    ```bash
