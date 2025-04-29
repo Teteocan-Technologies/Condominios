@@ -1,5 +1,8 @@
 from gestor_tareas.gestor_tareas import GestorTareas
 from utils import solicitar_prioridad, solicitar_indice
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 def main():
     # Inicializa el gestor de tareas con los archivos correspondientes
