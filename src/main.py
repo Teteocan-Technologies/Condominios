@@ -3,7 +3,7 @@ from utils import solicitar_prioridad, solicitar_indice
 
 def main():
     # Inicializa el gestor de tareas con los archivos correspondientes
-    gestor = GestorTareas("datos/tareas_pendientes.json", "datos/tareas_completadas.json")
+    gestor = GestorTareas("../datos/tareas_pendientes.json", "../datos/tareas_completadas.json")
 
     while True:
         print(

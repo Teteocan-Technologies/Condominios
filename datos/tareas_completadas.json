@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "titulo": "Historia de México II",
+        "descripcion": "Investigar sobre la Malinche y Hernán Cortés",
+        "prioridad": 2,
+        "completada": true
+    }
+]

@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "titulo": "Algebra booleana",
+        "descripcion": "Investigar que son los Teoremas de Morgan",
+        "prioridad": 2,
+        "completada": false
+    },
+    {
+        "titulo": "Matemáticas avanzadas",
+        "descripcion": "Realizar Runge Kutta a las últimas ecuaciones",
+        "prioridad": 1,
+        "completada": false
+    },
+    {
+        "titulo": "Ecuaciones Diferenciales",
+        "descripcion": "Transformada inversa de LaPlace",
+        "prioridad": 1,
+        "completada": false
+    }
+]
