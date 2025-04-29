@@ -30,7 +30,12 @@ El **Gestor de tareas** es una aplicación basada en consola que permite a los u
    ```
 
 3. **Instala las dependencias:**
-   Asegúrate de tener Python 3.10 o superior instalado. Luego, ejecuta:
+   Asegúrate de tener Python 3.10 o superior instalado. 
+   ```bash
+   python --version
+   ```
+
+   Luego, ejecuta:
    ```bash
    pip install -r requirements.txt
    ```
@@ -74,13 +79,19 @@ gestor_tareas/
 - **Datos obligatorios:** El título y la descripción de la tarea no pueden estar vacíos.
 - **Índices válidos:** Al seleccionar una tarea para editar, eliminar o completar, el índice debe estar dentro del rango de tareas disponibles.
 
+### Ejemplo de validación fallida
+- Si intentas ingresar una prioridad no válida, el programa mostrará un mensaje como este:
+```
+Ingresa la prioridad de la tarea (1 = Alta, 2 = Media, 3 = Baja): 5 Prioridad no válida. Por favor, ingresa un número entre 1 y 3.
+```
+
 ---
 
-## Ejemplo de Uso
+## Ejemplo de uso
 
 ### Crear una tarea
 ```
-Menú de tareas de estudiante:
+Menú de tareas:
 1. Agregar una tarea
 2. Mostrar tareas pendientes
 3. Editar una tarea
@@ -97,7 +108,7 @@ Tarea agregada exitosamente.
 
 ### Listar tareas pendientes
 ```
-Menú de tareas de estudiante:
+Menú de tareas:
 1. Agregar una tarea
 2. Mostrar tareas pendientes
 3. Editar una tarea
@@ -113,7 +124,7 @@ Tus tareas pendientes (1 en total) son:
 
 ### Completar una tarea
 ```
-Menú de tareas de estudiante:
+Menú de tareas:
 1. Agregar una tarea
 2. Mostrar tareas pendientes
 3. Editar una tarea
@@ -131,9 +142,25 @@ Tarea 'Estudiar para el examen' marcada como completada.
 
 ---
 
+### Ejemplo de una tarea en JSON
+```json
+{
+    "titulo": "Estudiar para el examen",
+    "descripcion": "Repasar los temas de matemáticas y física",
+    "prioridad": 1,
+    "completada": false
+}
+```
+---
+
 ## Pruebas
 
 Este proyecto incluye pruebas unitarias para garantizar el correcto funcionamiento de cada componente. Las pruebas están ubicadas en la carpeta `tests/`.
+
+Las pruebas unitarias verifican el correcto funcionamiento de los siguientes componentes:
+- Gestión de tareas (agregar, editar, eliminar, completar).
+- Validaciones de entrada del usuario.
+- Manejo de archivos JSON.
 
 ### Ejecutar todas las pruebas:
 Desde el directorio raíz del proyecto, ejecuta:
@@ -145,7 +172,8 @@ python -m unittest discover tests
 
 ## Contribuciones
 
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request, y asegúrate de incluir pruebas para cualquier funcionalidad nueva.
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request, y asegúrate de incluir pruebas para cualquier funcionalidad nueva. Puedes consultar la guía oficial de GitHub para abrir un pull request aquí:
+[Cómo abrir un pull request](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
 
 ---
 
@@ -160,3 +188,4 @@ Este proyecto está bajo la Licencia MIT.
 Este proyecto fue desarrollado por:
 - **Nombre del desarrollador:** Jorge Alejandro Chacón Zárate
 - **Contacto:** jorgechaconzarate@gmail.com
+- **GitHub:** [jorgechacon559](https://github.com/jorgechacon559)
