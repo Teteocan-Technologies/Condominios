@@ -7,7 +7,7 @@ def main():
 
     while True:
         print(
-            "\nMenú de tareas de estudiante:\n"
+            "\nMenú de tareas:\n"
             "1. Agregar una tarea\n"
             "2. Mostrar tareas pendientes\n"
             "3. Editar una tarea\n"
