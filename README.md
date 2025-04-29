@@ -145,7 +145,7 @@ python -m unittest discover tests
 
 ## Contribuciones
 
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request. Asegúrate de incluir pruebas para cualquier funcionalidad nueva.
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request, y asegúrate de incluir pruebas para cualquier funcionalidad nueva.
 
 ---
 
