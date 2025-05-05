@@ -19,7 +19,7 @@ class GestorArchivos:
             list[Tarea]: Lista de objetos Tarea cargados desde el archivo.
         """
         # Construir la ruta relativa basada en la ubicación de este archivo
-        base_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../datos"))
         ruta_completa = os.path.join(base_dir, ruta_archivo)
 
         try:
@@ -53,7 +53,7 @@ class GestorArchivos:
             tareas (list[Tarea]): Lista de objetos Tarea a guardar.
         """
         # Construir la ruta relativa basada en la ubicación de este archivo
-        base_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../datos"))
         ruta_completa = os.path.join(base_dir, ruta_archivo)
 
         try:
