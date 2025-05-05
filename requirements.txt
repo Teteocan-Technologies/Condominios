@@ -1,2 +1,1 @@
-# Dependencias del proyecto
-unittest  # Para pruebas unitarias (incluido en la biblioteca estándar de Python)
+# Este proyecto no tiene dependencias externas.
