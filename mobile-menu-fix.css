@@ -1,0 +1,116 @@
+/* MOBILE MENU FIX - SUPER SPECIFIC CSS TO OVERRIDE EVERYTHING */
+
+/* Hide mobile button on desktop */
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Mobile styles - very specific selectors */
+@media (max-width: 768px) {
+  
+  /* Show mobile button */
+  .mobile-menu-toggle {
+    display: block !important;
+    position: relative !important;
+    background: #a0734f !important;
+    border: 2px solid #a0734f !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 10px 12px !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    transition: transform 0.3s ease !important;
+    z-index: 1001 !important;
+  }
+  
+  .mobile-menu-toggle:hover {
+    transform: scale(1.05) !important;
+  }
+  
+  .mobile-menu-toggle.active {
+    transform: rotate(90deg) !important;
+  }
+  
+  /* Hide nav links by default on mobile */
+  .nav .nav__inner .nav__links {
+    position: fixed !important;
+    top: 70px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: white !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid #ddd !important;
+    border-top: none !important;
+    z-index: 1000 !important;
+    
+    /* Initially hidden */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-20px) !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* Show nav links when mobile-open class is added */
+  .nav .nav__inner .nav__links.mobile-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    max-height: 400px !important;
+    overflow: visible !important;
+  }
+  
+  /* Style nav links in mobile */
+  .nav .nav__inner .nav__links a {
+    display: block !important;
+    padding: 18px 24px !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid #eee !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s ease !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .nav .nav__inner .nav__links a:hover {
+    background-color: #f8f8f8 !important;
+    transform: none !important;
+  }
+  
+  /* Special styling for button link */
+  .nav .nav__inner .nav__links a.btn {
+    background: #a0734f !important;
+    color: white !important;
+    margin: 16px !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    border: none !important;
+    font-weight: 600 !important;
+  }
+  
+  .nav .nav__inner .nav__links a.btn:hover {
+    background: #8a5d42 !important;
+  }
+}
+
+/* Debug - add visible border to see if CSS is loading */
+.mobile-menu-toggle {
+  box-sizing: border-box !important;
+}
+
+/* Force override any conflicting styles */
+.nav__links.mobile-open {
+  display: flex !important;
+}

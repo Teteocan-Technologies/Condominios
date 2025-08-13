@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Menu Móvil - SUPER SIMPLE</title>
+    <style>
+        /* RESET BÁSICO */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f0f0f0;
+        }
+        
+        .nav { 
+            background: white; 
+            padding: 20px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #a0734f; 
+        }
+        
+        /* BOTÓN HAMBURGUESA - SIEMPRE VISIBLE PARA PRUEBA */
+        .mobile-menu-toggle { 
+            background: #a0734f; 
+            color: white; 
+            border: none; 
+            padding: 15px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        /* MENÚ - OCULTO POR DEFECTO */
+        .nav__links { 
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 9999;
+            border: 5px solid #ff0000;
+        }
+        
+        /* MENÚ - VISIBLE CUANDO TIENE LA CLASE "show" */
+        .nav__links.show { 
+            display: block;
+        }
+        
+        .nav__links a { 
+            display: block; 
+            padding: 30px; 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #333;
+            text-decoration: none;
+            border-bottom: 2px solid #ccc;
+        }
+        
+        /* CONTENIDO DE PRUEBA */
+        main {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        h1 { color: #333; margin-bottom: 20px; }
+        p { color: #666; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="brand">CondoPortal TEST</div>
+        
+        <button class="mobile-menu-toggle" id="menuBtn">
+            ☰ MENU
+        </button>
+        
+        <div class="nav__links" id="menu">
+            <a href="#1">Opción 1</a>
+            <a href="#2">Opción 2</a>
+            <a href="#3">Opción 3</a>
+            <a href="#4">Opción 4</a>
+            <a href="#5">Cerrar Menu</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>PRUEBA DE MENÚ MÓVIL</h1>
+        <p>Haz clic en "☰ MENU" para abrir el menú.</p>
+        <p>Deberías ver una pantalla completa con borde rojo.</p>
+        
+        <div style="margin-top: 30px;">
+            <p><strong>Ancho de ventana:</strong> <span id="width">-</span>px</p>
+            <p><strong>Alto de ventana:</strong> <span id="height">-</span>px</p>
+        </div>
+    </main>
+
+    <script>
+        console.log('🔧 INICIANDO TEST SÚPER SIMPLE');
+        
+        // Mostrar dimensiones de ventana
+        function updateDimensions() {
+            document.getElementById('width').textContent = window.innerWidth;
+            document.getElementById('height').textContent = window.innerHeight;
+        }
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+        
+        // MENÚ SÚPER SIMPLE
+        const menuBtn = document.getElementById('menuBtn');
+        const menu = document.getElementById('menu');
+        
+        console.log('- Botón encontrado:', menuBtn);
+        console.log('- Menú encontrado:', menu);
+        
+        menuBtn.addEventListener('click', function() {
+            console.log('🖱️ CLICK EN BOTÓN!');
+            
+            const isOpen = menu.classList.contains('show');
+            console.log('- ¿Está abierto?', isOpen);
+            
+            if (isOpen) {
+                menu.classList.remove('show');
+                console.log('✅ MENÚ CERRADO');
+            } else {
+                menu.classList.add('show');
+                console.log('✅ MENÚ ABIERTO - DEBE SER VISIBLE AHORA');
+                
+                // LOG DE DEBUG
+                console.log('- Display:', window.getComputedStyle(menu).display);
+                console.log('- Position:', window.getComputedStyle(menu).position);
+                console.log('- Z-index:', window.getComputedStyle(menu).zIndex);
+                console.log('- Clases del menú:', menu.className);
+            }
+        });
+        
+        // Cerrar al hacer clic en cualquier enlace
+        menu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                console.log('🔗 CLICK EN ENLACE - CERRANDO');
+                menu.classList.remove('show');
+            }
+        });
+        
+        console.log('✅ TEST INICIALIZADO - HAZ CLICK EN EL BOTÓN');
+    </script>
+</body>
+</html>
