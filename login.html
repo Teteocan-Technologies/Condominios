@@ -1,0 +1,135 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CondoPortal — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body class="light auth">
+  <!-- Elementos decorativos de fondo -->
+  <div class="auth__decoration">
+    <div class="floating-element floating-element--1"></div>
+    <div class="floating-element floating-element--2"></div>
+    <div class="floating-element floating-element--3"></div>
+    <div class="auth__grid-bg"></div>
+  </div>
+  
+  <!-- Panel de login mejorado -->
+  <div class="auth__container">
+    <div class="auth__panel">
+      <div class="auth__visual">
+        <div class="auth__visual-bg"></div>
+        <div class="auth__visual-content">
+          <img src="assets/img/logo.svg" class="logo logo--large" alt="CondoPortal" />
+          <h2>Bienvenido de vuelta</h2>
+          <p>Gestiona tu condominio con tecnología de vanguardia</p>
+          <div class="auth__stats">
+            <div class="stat">
+              <span class="stat__number">500+</span>
+              <span class="stat__label">Residentes</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number">24/7</span>
+              <span class="stat__label">Soporte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="auth__form-container">
+        <div class="auth__brand">
+          <img src="assets/img/logo.svg" class="logo" alt="Logo" />
+          <h1>Iniciar Sesión</h1>
+          <p>Accede a tu portal de condominio</p>
+        </div>
+        
+        <form class="auth__form" id="login-form">
+          <div class="input-group">
+            <label>Correo electrónico</label>
+            <div class="input-wrapper">
+              <span class="input-icon">📧</span>
+              <input id="email" type="email" placeholder="tu@correo.com" required />
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label>Contraseña</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔒</span>
+              <input id="password" type="password" placeholder="••••••••" required />
+            </div>
+          </div>
+          
+          <div class="auth__options">
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+              Recordarme
+            </label>
+            <a href="#" id="recover-link" class="link--primary">¿Olvidaste tu contraseña?</a>
+          </div>
+          
+          <div class="demo-info">
+            <span class="demo-badge">DEMO</span>
+            <p>demo@condoportal.mx / Demo123!</p>
+          </div>
+          
+          <div class="text-danger" id="login-error">
+            <span class="error-icon">⚠️</span>
+            Credenciales inválidas
+          </div>
+          
+          <button class="btn btn--primary btn--full" type="submit">
+            <span>Entrar al Portal</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          
+          <div class="auth__footer">
+            <p>¿Primera vez aquí? <a href="index.html" class="link--primary">Conoce CondoPortal</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const DEMO_EMAIL = 'demo@condoportal.mx';
+      const DEMO_PASS = 'Demo123!';
+      const form = document.getElementById('login-form');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const errorEl = document.getElementById('login-error');
+      const recover = document.getElementById('recover-link');
+
+      // Si ya hay sesión, ir al portal
+      if (localStorage.getItem('cp_auth')) {
+        window.location.href = 'app.html#dashboard';
+        return;
+      }
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const ok = email.value.trim().toLowerCase() === DEMO_EMAIL && password.value === DEMO_PASS;
+        if(!ok){
+          errorEl.style.display = 'block';
+          return;
+        }
+        const name = email.value.split('@')[0];
+        localStorage.setItem('cp_auth', JSON.stringify({ email: email.value, name }));
+        window.location.href = 'app.html#dashboard';
+      });
+
+      recover.addEventListener('click', (e)=>{
+        e.preventDefault();
+        alert('Se envió un enlace de recuperación (demo)');
+      });
+    })();
+  </script>
+</body>
+</html>

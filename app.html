@@ -1,0 +1,427 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CondoPortal — App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body class="light app">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <img src="assets/img/logo.svg" class="logo" alt="Logo" />
+      <span>CondoPortal</span>
+    </div>
+    <nav class="menu">
+      <a data-view="dashboard" class="active">Dashboard</a>
+      <a data-view="gastos">Gastos</a>
+      <a data-view="pagos">Pagos</a>
+      <a data-view="estados">Estados de cuenta</a>
+      <a data-view="negocios">Negocios de vecinos</a>
+      <a data-view="admin">Admin</a>
+  <a href="login.html" id="logout-side">Salir</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <div class="topbar__left">
+        <h1 id="view-title">Dashboard</h1>
+      </div>
+      <div class="topbar__right">
+        <button class="btn btn--ghost" id="toggleTheme">Tema</button>
+  <button class="btn btn--ghost" id="logout">Salir</button>
+        <div class="avatar">R</div>
+      </div>
+    </header>
+
+    <section id="view-dashboard" class="view active">
+      <div class="grid-3">
+        <div class="kpi" data-animate="counter">
+          <span class="kpi__label">Ingresos del mes</span>
+          <span class="kpi__value" data-target="245300">$0</span>
+          <small class="kpi__delta kpi__delta--up">+8%</small>
+        </div>
+        <div class="kpi" data-animate="counter">
+          <span class="kpi__label">Egresos del mes</span>
+          <span class="kpi__value" data-target="198750">$0</span>
+          <small class="kpi__delta kpi__delta--down">-3%</small>
+        </div>
+        <div class="kpi" data-animate="counter">
+          <span class="kpi__label">Cuotas pagadas</span>
+          <span class="kpi__value" data-target="182">0/220</span>
+          <small class="kpi__delta kpi__delta--up">83%</small>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel dashboard-chart">
+          <div class="panel-header">
+            <h3>Flujo de caja mensual</h3>
+            <div class="chart-controls">
+              <button class="btn btn--sm" data-period="3m">3M</button>
+              <button class="btn btn--sm btn--primary" data-period="6m">6M</button>
+              <button class="btn btn--sm" data-period="1y">1A</button>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="cash-flow-chart" width="400" height="200"></canvas>
+          </div>
+        </div>
+
+        <div class="panel recent-activity">
+          <div class="panel-header">
+            <h3>Actividad reciente</h3>
+            <button class="btn btn--sm btn--ghost" onclick="refreshActivity()">
+              <span class="refresh-icon">🔄</span> Actualizar
+            </button>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon payment">💳</div>
+              <div class="activity-content">
+                <p><strong>Pago recibido</strong> - Depto 301A</p>
+                <small>Cuota de mantenimiento - $2,500</small>
+                <span class="activity-time">Hace 15 min</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon maintenance">🔧</div>
+              <div class="activity-content">
+                <p><strong>Mantenimiento programado</strong> - Elevador B</p>
+                <small>Revisión mensual completada</small>
+                <span class="activity-time">Hace 2 horas</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon alert">⚠️</div>
+              <div class="activity-content">
+                <p><strong>Alerta de seguridad</strong> - Portón principal</p>
+                <small>Sensor de movimiento activado</small>
+                <span class="activity-time">Hace 4 horas</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon business">🏪</div>
+              <div class="activity-content">
+                <p><strong>Nuevo negocio registrado</strong> - Depto 502C</p>
+                <small>Clases de piano para niños</small>
+                <span class="activity-time">Hace 1 día</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="resumen">Resumen</button>
+          <button class="tab" data-tab="categorias">Categorías</button>
+          <button class="tab" data-tab="historial">Historial</button>
+          <button class="tab" data-tab="proyecciones">Proyecciones</button>
+        </div>
+        <div class="tab__content active" id="tab-resumen">
+          <div class="summary-grid">
+            <div class="summary-card">
+              <h4>Ocupación actual</h4>
+              <div class="occupancy-bar">
+                <div class="occupancy-fill" data-percentage="89"></div>
+              </div>
+              <p>196/220 departamentos ocupados</p>
+            </div>
+            <div class="summary-card">
+              <h4>Pagos pendientes</h4>
+              <div class="pending-payments">
+                <span class="amount">$92,500</span>
+                <span class="count">38 residentes</span>
+              </div>
+            </div>
+            <div class="summary-card">
+              <h4>Próximos vencimientos</h4>
+              <div class="upcoming-dates">
+                <div class="date-item">
+                  <span class="date">15 Mar</span>
+                  <span class="event">Pago seguro</span>
+                </div>
+                <div class="date-item">
+                  <span class="date">20 Mar</span>
+                  <span class="event">Revisión técnica</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab__content" id="tab-categorias">
+          <div class="expenses-breakdown">
+            <div class="expense-category">
+              <span class="category-name">Mantenimiento</span>
+              <div class="category-bar">
+                <div class="category-fill category-fill--45" data-amount="89,235"></div>
+              </div>
+              <span class="category-amount">$89,235</span>
+            </div>
+            <div class="expense-category">
+              <span class="category-name">Servicios</span>
+              <div class="category-bar">
+                <div class="category-fill category-fill--30" data-amount="59,670"></div>
+              </div>
+              <span class="category-amount">$59,670</span>
+            </div>
+            <div class="expense-category">
+              <span class="category-name">Seguridad</span>
+              <div class="category-bar">
+                <div class="category-fill category-fill--15" data-amount="29,835"></div>
+              </div>
+              <span class="category-amount">$29,835</span>
+            </div>
+            <div class="expense-category">
+              <span class="category-name">Administración</span>
+              <div class="category-bar">
+                <div class="category-fill category-fill--10" data-amount="19,890"></div>
+              </div>
+              <span class="category-amount">$19,890</span>
+            </div>
+          </div>
+        </div>
+        <div class="tab__content" id="tab-historial">
+          <div class="timeline-container">
+            <div class="timeline-item">
+              <div class="timeline-date">Marzo 2025</div>
+              <div class="timeline-content">
+                <h5>Renovación del contrato de limpieza</h5>
+                <p>Se renovó el contrato con Limpieza Premium por 12 meses adicionales</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Febrero 2025</div>
+              <div class="timeline-content">
+                <h5>Instalación de nuevas cámaras de seguridad</h5>
+                <p>Upgrade del sistema de seguridad con 8 cámaras adicionales</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Enero 2025</div>
+              <div class="timeline-content">
+                <h5>Inauguración del nuevo gimnasio</h5>
+                <p>Apertura oficial de las nuevas instalaciones deportivas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab__content" id="tab-proyecciones">
+          <div class="projections-grid">
+            <div class="projection-card">
+              <h4>Proyección Q2 2025</h4>
+              <div class="projection-value">$2.1M</div>
+              <div class="projection-change positive">+12% vs Q1</div>
+            </div>
+            <div class="projection-card">
+              <h4>Fondo de reserva</h4>
+              <div class="projection-value">$890K</div>
+              <div class="projection-change neutral">Meta: $1M</div>
+            </div>
+            <div class="projection-card">
+              <h4>ROI mejoras</h4>
+              <div class="projection-value">18.5%</div>
+              <div class="projection-change positive">Excelente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-gastos" class="view">
+      <div class="panel">
+        <h2>Gastos</h2>
+        <details open>
+          <summary>Agregar gasto</summary>
+          <form class="form-row" onsubmit="event.preventDefault(); demoAddRow('gastos-table');" aria-label="Agregar gasto">
+            <input placeholder="Descripción" required />
+            <input type="number" placeholder="Monto" required />
+            <select title="Categoría">
+              <option>Mantenimiento</option>
+              <option>Seguridad</option>
+              <option>Limpieza</option>
+              <option>Servicios</option>
+              <option>Otros</option>
+            </select>
+            <button class="btn btn--primary" type="submit">Agregar</button>
+          </form>
+        </details>
+        <table class="table" id="gastos-table">
+          <thead><tr><th>Fecha</th><th>Descripción</th><th>Categoría</th><th>Monto</th></tr></thead>
+          <tbody>
+            <tr><td>2025-08-03</td><td>Vigilancia</td><td>Seguridad</td><td>$45,200</td></tr>
+            <tr><td>2025-08-05</td><td>Limpieza mensual</td><td>Limpieza</td><td>$18,100</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="view-pagos" class="view">
+      <div class="panel">
+        <h2>Pagos</h2>
+        <p>Simulación de flujo Stripe (sin backend): seleccionar método y mostrar modal de confirmación.</p>
+        <div class="pay-grid">
+          <div class="pay-card">
+            <h3>Cuota mensual</h3>
+            <p>$1,200</p>
+            <button class="btn btn--primary" onclick="openModal('pago-modal')">Pagar</button>
+          </div>
+          <div class="pay-card">
+            <h3>Cuota extraordinaria</h3>
+            <p>$800</p>
+            <button class="btn btn--ghost" onclick="openModal('pago-modal')">Pagar</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Historial de pagos</h3>
+        <ul class="list list--spaced">
+          <li><span>Julio 2025</span><span>Pagado</span></li>
+          <li><span>Junio 2025</span><span>Pagado</span></li>
+          <li><span>Mayo 2025</span><span>Pendiente</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="view-estados" class="view">
+      <div class="panel">
+        <h2>Estados de cuenta</h2>
+        <div class="cards cards--2">
+          <div class="card">
+            <h3>Unidad 2B</h3>
+            <p>Saldo: $0</p>
+            <button class="btn btn--ghost" onclick="openModal('recibo-modal')">Descargar recibo</button>
+          </div>
+          <div class="card">
+            <h3>Unidad 3C</h3>
+            <p>Saldo: $1,200</p>
+            <button class="btn btn--primary" onclick="openModal('pago-modal')">Pagar ahora</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-negocios" class="view">
+      <div class="panel">
+        <h2>Negocios de vecinos</h2>
+        <form class="form-row" onsubmit="event.preventDefault(); demoAddCard();" aria-label="Publicar negocio">
+          <input placeholder="Nombre del negocio" required />
+          <input placeholder="Categoría (ej. Repostería)" required />
+          <input placeholder="Contacto (tel o web)" required />
+          <button class="btn btn--primary" type="submit">Publicar</button>
+        </form>
+        <div class="cards cards--3" id="negocios-grid">
+          <div class="card">
+            <h3>Panadería Doña Lu</h3>
+            <p>Masa madre, pedidos 24h.</p>
+            <small>Contacto: 55 1234 5678</small>
+          </div>
+          <div class="card">
+            <h3>Plomería Gómez</h3>
+            <p>Urgencias 24/7</p>
+            <small>Contacto: 55 9876 5432</small>
+          </div>
+          <div class="card">
+            <h3>Yoga con Ana</h3>
+            <p>Clases en casa club</p>
+            <small>@yogaconana</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="view">
+      <div class="panel">
+        <h2>Administración</h2>
+        <div class="grid-2">
+          <div>
+            <h3>Usuarios y roles</h3>
+            <table class="table">
+              <thead><tr><th>Nombre</th><th>Rol</th><th>Unidad</th></tr></thead>
+              <tbody>
+                <tr><td>Carlos Ruiz</td><td>Admin</td><td>-</td></tr>
+                <tr><td>María López</td><td>Residente</td><td>2B</td></tr>
+                <tr><td>Juan Pérez</td><td>Comité</td><td>3C</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Aprobaciones</h3>
+            <ul class="list">
+              <li><span>Compra luminarias</span><button class="btn btn--primary btn--sm" onclick="toast('Aprobado')">Aprobar</button></li>
+              <li><span>Mantenimiento elevador</span><button class="btn btn--ghost btn--sm" onclick="toast('Rechazado')">Rechazar</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modales -->
+    <div class="modal" id="pago-modal" aria-hidden="true">
+      <div class="modal__dialog">
+        <button class="modal__close" onclick="closeModal('pago-modal')">×</button>
+        <h3>Pago en línea (demo)</h3>
+        <label>Método de pago
+          <select>
+            <option>Tarjeta</option>
+            <option>Transferencia</option>
+            <option>OXXO</option>
+          </select>
+        </label>
+        <button class="btn btn--primary" onclick="closeModal('pago-modal'); toast('Pago simulado')">Continuar</button>
+      </div>
+    </div>
+
+    <div class="modal" id="recibo-modal" aria-hidden="true">
+      <div class="modal__dialog">
+        <button class="modal__close" onclick="closeModal('recibo-modal')">×</button>
+        <h3>Descarga de recibo</h3>
+        <p>Se generará un PDF de ejemplo (mock).</p>
+        <button class="btn btn--primary" onclick="toast('Descarga iniciada (mock)')">Descargar</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </main>
+  <script>
+    (function(){
+      const raw = localStorage.getItem('cp_auth');
+      if(!raw){
+        window.location.replace('login.html');
+        return;
+      }
+      let auth = null;
+      try { auth = JSON.parse(raw||''); } catch(e){
+        localStorage.removeItem('cp_auth');
+        window.location.replace('login.html');
+        return;
+      }
+      // Personalizar avatar
+      const avatar = document.querySelector('.avatar');
+      if(avatar){
+        const initial = ((auth && (auth.name || auth.email)) ? (auth.name || auth.email)[0] : 'R').toUpperCase();
+        avatar.textContent = initial;
+        avatar.title = auth && auth.email ? auth.email : '';
+      }
+      // Logout handlers
+      function doLogout(ev){
+        if(ev) ev.preventDefault();
+        localStorage.removeItem('cp_auth');
+        window.location.href = 'login.html';
+      }
+      const logoutTop = document.getElementById('logout');
+      if(logoutTop) logoutTop.addEventListener('click', doLogout);
+      const logoutSide = document.getElementById('logout-side');
+      if(logoutSide) logoutSide.addEventListener('click', doLogout);
+    })();
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

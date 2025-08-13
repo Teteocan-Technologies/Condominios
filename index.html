@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CondoPortal — Comunidad inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="landing.css" />
+    <!-- Leaflet CSS para el mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  </head>
+  <body class="light">
+    <header class="nav">
+      <div class="container nav__inner">
+        <a class="brand" href="#">
+          <img src="assets/img/logo.svg" class="logo" alt="CondoPortal" />
+          CondoPortal
+        </a>
+        <nav class="nav__links">
+          <a href="#amenidades">Amenidades</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#negocios">Marketplace</a>
+          <a href="#beneficios">Beneficios</a>
+          <a class="btn btn--ghost" href="login.html">Iniciar sesión</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <h1>La comunidad inteligente para tu condominio</h1>
+            <p>Conecta con tus vecinos, gestiona pagos y accede a servicios exclusivos en una plataforma elegante y segura.</p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="login.html">Acceder al portal</a>
+              <a class="btn btn--ghost" href="#beneficios">Ver beneficios</a>
+            </div>
+          </div>
+          <div>
+            <div class="browser">
+              <div class="browser__bar">
+                <span></span><span></span><span></span>
+              </div>
+              <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1400&q=70" alt="Vista del dashboard" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="amenidades" class="section">
+        <div class="container">
+          <h2 class="section-title">Vive una experiencia premium</h2>
+          <p class="section-sub">Espacios diseñados para tu comodidad y bienestar</p>
+          <div class="cards cards--3">
+            <article class="card">
+              <img src="https://img.freepik.com/free-photo/umbrella-chair_74190-2092.jpg?t=st=1755099340~exp=1755102940~hmac=676d0c7c1682688c43c7df9c601671ee2a756b41f19a4698f375ecb230804202&w=1480" alt="Piscina" />
+              <div class="card__body">
+                <h3>Piscina Infinity</h3>
+                <p>Vista panorámica y zona lounge exclusiva.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=70" alt="Gimnasio" />
+              <div class="card__body">
+                <h3>Gimnasio Premium</h3>
+                <p>Equipo de última generación y entrenadores.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://plus.unsplash.com/premium_photo-1727450578586-eefc750c8f6f?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Áreas comunes" />
+              <div class="card__body">
+                <h3>Áreas Comunitarias</h3>
+                <p>Coworking, eventos y zonas verdes.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ubicacion" class="section ubicacion">
+        <div class="container">
+          <h2 class="section-title">Ubicación privilegiada</h2>
+          <p class="section-sub">Conectado con lo mejor de la ciudad y rodeado de naturaleza</p>
+          <div class="map-container">
+            <div id="interactive-map" class="interactive-map"></div>
+            <div class="map-overlay">
+              <div class="location-info">
+                <h3>🏢 Torre CondoPortal</h3>
+                <p>📍 Polanco V Sección, CDMX</p>
+                <div class="location-features">
+                  <span class="feature">🚇 Metro Polanco 5 min</span>
+                  <span class="feature">🛍️ Antara Fashion Hall 8 min</span>
+                  <span class="feature">🏛️ Museo Nacional 12 min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="negocios" class="section">
+        <div class="container">
+          <h2 class="section-title">Marketplace de Vecinos</h2>
+          <p class="section-sub">Conecta con los negocios y servicios de tu comunidad</p>
+          <div class="marketplace-grid">
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://plus.unsplash.com/premium_photo-1677852284473-b15f23b65643?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef Personal" />
+              </div>
+              <div class="business-content">
+                <h3>Chef Personal</h3>
+                <p class="business-category">🍽️ Gastronomía</p>
+                <p>Ana García - Depto 402A</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">4.9 (23 reseñas)</span>
+                </div>
+                <p class="business-description">Comidas gourmet a domicilio. Especialista en cocina mediterránea y vegana.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+            
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clases de Yoga" />
+              </div>
+              <div class="business-content">
+                <h3>Yoga & Mindfulness</h3>
+                <p class="business-category">🧘‍♀️ Bienestar</p>
+                <p>María Fernández - Depto 301B</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">4.8 (15 reseñas)</span>
+                </div>
+                <p class="business-description">Clases personalizadas de yoga y meditación en tu hogar.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+            
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://images.unsplash.com/photo-1625321171045-1fea4ac688e9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mascotas" />
+              </div>
+              <div class="business-content">
+                <h3>Cuidado de Mascotas</h3>
+                <p class="business-category">🐕 Servicios Pet</p>
+                <p>Carlos Ruiz - Depto 205C</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">5.0 (31 reseñas)</span>
+                </div>
+                <p class="business-description">Paseos, cuidado y entrenamiento profesional para tu mascota.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+            
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tutorias" />
+              </div>
+              <div class="business-content">
+                <h3>Tutorías Académicas</h3>
+                <p class="business-category">📚 Educación</p>
+                <p>Dr. Roberto López - Depto 501A</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">4.9 (18 reseñas)</span>
+                </div>
+                <p class="business-description">Matemáticas, física y química. Preparación para exámenes universitarios.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+            
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?q=80&w=1158&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fotografía" />
+              </div>
+              <div class="business-content">
+                <h3>Fotografía Profesional</h3>
+                <p class="business-category">📸 Arte & Fotografía</p>
+                <p>Sofía Martín - Depto 401C</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">4.7 (12 reseñas)</span>
+                </div>
+                <p class="business-description">Sesiones familiares, eventos y retratos corporativos.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+            
+            <article class="business-card">
+              <div class="business-logo">
+                <img src="https://plus.unsplash.com/premium_photo-1664301132849-f52af765df79?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Reparaciones" />
+              </div>
+              <div class="business-content">
+                <h3>Reparaciones del Hogar</h3>
+                <p class="business-category">🔧 Mantenimiento</p>
+                <p>Ing. Miguel Torres - Depto 304A</p>
+                <div class="business-rating">
+                  <span class="stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-text">4.9 (27 reseñas)</span>
+                </div>
+                <p class="business-description">Plomería, electricidad y reparaciones generales. Servicio 24/7.</p>
+                <button class="btn btn--sm btn--primary">Contactar</button>
+              </div>
+            </article>
+          </div>
+          
+          <div class="marketplace-cta">
+            <h3>¿Tienes un negocio o servicio?</h3>
+            <p>Únete al marketplace de CondoPortal y conecta con tus vecinos</p>
+            <button class="btn btn--primary">Publicar mi negocio</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficios" class="cta">
+        <div class="container">
+          <h2>Únete a la comunidad inteligente</h2>
+          <p>Gestión transparente, pagos en línea y un marketplace de vecinos.</p>
+          <a class="btn btn--ghost" href="login.html">Acceder ahora</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <strong>CondoPortal</strong>
+          <p class="footer__muted">Gestión de comunidades residenciales con tecnología de vanguardia.</p>
+        </div>
+        <div>
+          <h4>Enlaces</h4>
+          <small><a href="#amenidades">Amenidades</a></small><br />
+          <small><a href="#ubicacion">Ubicación</a></small><br />
+          <small><a href="login.html">Acceso residentes</a></small>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <small><a href="#">Términos</a></small><br />
+          <small><a href="#">Privacidad</a></small>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <small>info@condoportal.mx</small><br />
+          <small>+52 55 1234 5678</small>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Leaflet JS para el mapa interactivo -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      // Inicializar mapa de Polanco
+      document.addEventListener('DOMContentLoaded', function() {
+        // Coordenadas de Polanco V Sección
+        const polancoCoords = [19.4326, -99.1915];
+        
+        // Crear el mapa
+        const map = L.map('interactive-map', {
+          zoomControl: false,
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+          dragging: true,
+          touchZoom: true
+        }).setView(polancoCoords, 15);
+        
+        // Añadir tiles con estilo oscuro elegante
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+          attribution: '© OpenStreetMap contributors © CARTO',
+          subdomains: 'abcd',
+          maxZoom: 19
+        }).addTo(map);
+        
+        // Crear icono personalizado para CondoPortal
+        const condoIcon = L.divIcon({
+          html: `
+            <div class="custom-marker">
+              <div class="marker-pulse"></div>
+              <div class="marker-icon">🏢</div>
+            </div>
+          `,
+          className: 'custom-marker-container',
+          iconSize: [40, 40],
+          iconAnchor: [20, 20]
+        });
+        
+        // Añadir marcador principal
+        const mainMarker = L.marker(polancoCoords, {icon: condoIcon})
+          .addTo(map)
+          .bindPopup(`
+            <div class="custom-popup">
+              <h4>🏢 Torre CondoPortal</h4>
+              <p>Tu nuevo hogar en el corazón de Polanco</p>
+              <small>📍 Polanco V Sección, Miguel Hidalgo, CDMX</small>
+            </div>
+          `);
+        
+        // Añadir marcadores de puntos de interés
+        const pointsOfInterest = [
+          {
+            coords: [19.4305, -99.1896],
+            name: '🚇 Metro Polanco',
+            description: 'Línea 7 - 5 min caminando',
+            icon: '🚇'
+          },
+          {
+            coords: [19.4290, -99.1930],
+            name: '🛍️ Antara Fashion Hall',
+            description: 'Centro comercial premium',
+            icon: '🛍️'
+          },
+          {
+            coords: [19.4260, -99.1755],
+            name: '🏛️ Museo Nacional',
+            description: 'Antropología e Historia',
+            icon: '🏛️'
+          },
+          {
+            coords: [19.4200, -99.1820],
+            name: '🌳 Bosque de Chapultepec',
+            description: 'Pulmón verde de la ciudad',
+            icon: '🌳'
+          }
+        ];
+        
+        pointsOfInterest.forEach(poi => {
+          const poiIcon = L.divIcon({
+            html: `
+              <div class="poi-marker">
+                <span class="poi-icon">${poi.icon}</span>
+              </div>
+            `,
+            className: 'poi-marker-container',
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+          });
+          
+          L.marker(poi.coords, {icon: poiIcon})
+            .addTo(map)
+            .bindPopup(`
+              <div class="custom-popup">
+                <h5>${poi.name}</h5>
+                <p>${poi.description}</p>
+              </div>
+            `);
+        });
+        
+        // Añadir control de zoom personalizado
+        L.control.zoom({
+          position: 'bottomright'
+        }).addTo(map);
+        
+        // Animar el mapa cuando sea visible
+        const mapContainer = document.getElementById('interactive-map');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                map.invalidateSize();
+                map.flyTo(polancoCoords, 15, {
+                  animate: true,
+                  duration: 2
+                });
+              }, 300);
+            }
+          });
+        });
+        observer.observe(mapContainer);
+      });
+    </script>
+  </body>
+</html>
