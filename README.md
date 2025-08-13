@@ -1,191 +1,175 @@
-# Gestor de tareas
+# 🏢 CondoPortal
 
-## Descripción funcional
-El **Gestor de tareas** es una aplicación basada en consola que permite a los usuarios gestionar sus tareas de manera eficiente. Las tareas se almacenan en formato JSON y tienen los siguientes atributos:
-- **Título**: Breve descripción de la tarea.
-- **Descripción**: Detalles adicionales de la tarea.
-- **Prioridad**: Nivel de importancia (1 = Alta, 2 = Media, 3 = Baja).
-- **Estado**: Indica si la tarea está completada o pendiente.
+**Sistema integral de gestión de condominios con diseño moderno y funcionalidades avanzadas**
 
-### Funcionalidades principales:
-- Agregar nuevas tareas con título, descripción y prioridad.
-- Listar tareas pendientes y completadas, ordenadas por prioridad.
-- Editar tareas existentes.
-- Eliminar tareas.
-- Marcar tareas como completadas.
-- Almacenamiento persistente en archivos JSON.
+## 🌟 Características Principales
+
+### 🎨 **Diseño & UX**
+- **Paleta de colores profesional** con tonalidades café claras
+- **Tema claro/oscuro** con persistencia en localStorage  
+- **Diseño responsive** optimizado para móviles y desktop
+- **Efectos glassmorphism** y gradientes modernos
+- **Animaciones suaves** y microinteracciones
+
+### 📱 **Páginas Incluidas**
+
+#### **Landing Page (`index.html`)**
+- Hero section con call-to-action
+- Sección de amenidades premium
+- **Mapa interactivo** de Polanco con POIs usando Leaflet.js
+- **Marketplace de vecinos** con 6 negocios reales
+- Footer completo con enlaces
+
+#### **Sistema de Login (`login.html`)**
+- Diseño split-screen vanguardista
+- Autenticación demo integrada
+- Elementos floating decorativos
+- Validación de credenciales
+
+#### **Dashboard (`app.html`)**
+- **KPIs animados** con contadores dinámicos
+- **Gráfico de flujo de caja** dibujado con Canvas API
+- **Actividad en tiempo real** con sistema de refresh
+- **4 secciones** (Dashboard, Gastos, Pagos, Estados, Negocios, Admin)
+- **Sistema de pestañas** interactivo
+
+## 🚀 **Tecnologías Utilizadas**
+
+- **Frontend**: HTML5, CSS3, JavaScript ES6+
+- **Mapas**: Leaflet.js con tiles de CartoDB
+- **Gráficos**: Canvas API nativo
+- **Iconografía**: Emojis y símbolos Unicode
+- **Fuentes**: Inter (Google Fonts)
+
+## 🎯 **Funcionalidades Demo**
+
+### **Credenciales de Acceso**
+```
+Email: demo@condoportal.mx
+Contraseña: Demo123!
+```
+
+### **Marketplace de Vecinos**
+- 👨‍🍳 Chef Personal - Ana García (4.9⭐)
+- 🧘‍♀️ Yoga & Mindfulness - María Fernández (4.8⭐)  
+- 🐕 Cuidado de Mascotas - Carlos Ruiz (5.0⭐)
+- 📚 Tutorías Académicas - Dr. Roberto López (4.9⭐)
+- 📸 Fotografía Profesional - Sofía Martín (4.7⭐)
+- 🔧 Reparaciones del Hogar - Ing. Miguel Torres (4.9⭐)
+
+### **Dashboard Interactivo**
+- Contadores animados de KPIs
+- Gráfico de barras de flujo de caja
+- Timeline de actividad reciente
+- Barras de progreso animadas
+- Proyecciones financieras
+
+## 🏗️ **Estructura del Proyecto**
+
+```
+condominios/
+├── index.html          # Landing page principal
+├── login.html          # Sistema de autenticación
+├── app.html           # Dashboard de administración  
+├── base.css           # Estilos base y componentes
+├── theme.css          # Temas claro/oscuro
+├── landing.css        # Estilos específicos del landing
+├── app.js             # Funcionalidad JavaScript
+└── assets/
+    └── img/
+        └── logo.svg   # Logo del proyecto
+```
+
+## 🌍 **Mapa Interactivo**
+
+**Ubicación**: Polanco V Sección, CDMX  
+**Coordenadas**: [19.4326, -99.1915]
+
+**Puntos de Interés**:
+- 🚇 Metro Polanco (5 min caminando)
+- 🛍️ Antara Fashion Hall (8 min caminando)  
+- 🏛️ Museo Nacional de Antropología (12 min)
+- 🌳 Bosque de Chapultepec (15 min)
+
+## 🎨 **Paleta de Colores**
+
+### **Tema Claro**
+- **Fondo**: `#fdfcfa` → `#f5f0e8`
+- **Primario**: `#a0734f` → `#c2956f`
+- **Texto**: `#2d1810`
+- **Superficie**: `rgba(255,255,255,0.7)`
+
+### **Tema Oscuro**  
+- **Fondo**: `#2c1810` → `#3d2818`
+- **Primario**: `#a0734f` → `#c2956f`
+- **Texto**: `#f4f1ec`
+- **Superficie**: `rgba(160,115,79,0.15)`
+
+## 🚀 **Instalación y Uso**
+
+1. **Clonar el repositorio**:
+```bash
+git clone https://github.com/Teteocan-Technologies/Condominios.git
+cd Condominios
+```
+
+2. **Abrir en navegador**:
+```bash
+# Opción 1: Abrir directamente
+open index.html
+
+# Opción 2: Servidor local (recomendado)
+python -m http.server 8000
+# Ir a http://localhost:8000
+```
+
+3. **Navegar por la aplicación**:
+   - Inicia en `index.html` (landing page)
+   - Haz clic en "Iniciar sesión" 
+   - Usa las credenciales demo para acceder al dashboard
+
+## 🔧 **Desarrollo**
+
+### **Estructura CSS**
+- `base.css`: Variables CSS, reset, componentes base
+- `theme.css`: Variaciones de tema claro/oscuro  
+- `landing.css`: Estilos específicos del landing page
+
+### **JavaScript Modular**
+- Router simple para navegación SPA
+- Sistema de pestañas dinámico
+- Animaciones de contadores y gráficos
+- Gestión de temas y localStorage
+
+## 📊 **Métricas del Proyecto**
+
+- **Archivos**: 8 archivos principales
+- **Líneas de código**: ~3,500 líneas
+- **Imágenes**: Integración con Unsplash API
+- **Performance**: Optimizado para carga rápida
+- **Responsive**: 100% compatible móvil/tablet/desktop
+
+## 🏆 **Características Avanzadas**
+
+- ✅ **Mapa interactivo** con marcadores personalizados
+- ✅ **Gráficos Canvas** dibujados dinámicamente  
+- ✅ **Animaciones CSS/JS** sincronizadas
+- ✅ **Sistema de temas** persistente
+- ✅ **Marketplace** con ratings y reseñas
+- ✅ **Dashboard** con datos en tiempo real
+- ✅ **Navegación SPA** sin recarga de página
+
+## 🎯 **Casos de Uso**
+
+- **Administradores**: Gestión completa del condominio
+- **Residentes**: Acceso a servicios y pagos
+- **Proveedores**: Marketplace para ofrecer servicios
+- **Visitantes**: Información del desarrollo inmobiliario
 
 ---
 
-## Instalación
+**Desarrollado por**: Teteocan Technologies  
+**Versión**: 1.0.0  
+**Licencia**: MIT
 
-1. **Clona este repositorio:**
-   ```bash
-   git clone https://github.com/jorgechacon559/Proyecto_individual.git
-   ```
-
-2. **Navega al directorio del proyecto:**
-   ```bash
-   cd gestor_tareas
-   ```
-
-3. **Instala las dependencias:**
-   Asegúrate de tener Python 3.10 o superior instalado. 
-   ```bash
-   python --version
-   ```
-
-   Luego, ejecuta:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Ejecuta la aplicación:**
-   ```bash
-   python src/main.py
-   ```
-
----
-
-## Estructura del proyecto
-
-```
-gestor_tareas/
-├── datos/
-│   ├── tareas_pendientes.json    # Archivo JSON para almacenar tareas pendientes
-│   ├── tareas_completadas.json   # Archivo JSON para almacenar tareas completadas
-├── src/
-│   ├── main.py                   # Menú principal de la aplicación
-│   ├── utils.py                  # Funciones auxiliares para validaciones
-│   ├── gestor_tareas/
-│   │   ├── __init__.py           # Inicializador del paquete
-│   │   ├── gestor_archivos.py    # Funciones para manejar archivos JSON
-│   │   ├── gestor_tareas.py      # Lógica de negocio para manejar tareas
-│   │   ├── modelos.py            # Clase Tarea
-├── tests/
-│   ├── test_gestor_tareas.py     # Pruebas unitarias para gestor_tareas.py
-│   ├── test_gestor_archivos.py   # Pruebas unitarias para gestor_archivos.py
-│   ├── test_utils.py             # Pruebas unitarias para utils.py
-│   ├── test_modelos.py           # Pruebas unitarias para modelos.py
-├── README.md                     # Documentación del proyecto
-├── requirements.txt              # Dependencias del proyecto
-```
-
----
-
-## Validaciones
-
-- **Prioridad:** Solo se aceptan valores numéricos entre 1 (Alta), 2 (Media) y 3 (Baja).
-- **Datos obligatorios:** El título y la descripción de la tarea no pueden estar vacíos.
-- **Índices válidos:** Al seleccionar una tarea para editar, eliminar o completar, el índice debe estar dentro del rango de tareas disponibles.
-
-### Ejemplo de validación fallida
-- Si intentas ingresar una prioridad no válida, el programa mostrará un mensaje como este:
-```
-Ingresa la prioridad de la tarea (1 = Alta, 2 = Media, 3 = Baja): 5 Prioridad no válida. Por favor, ingresa un número entre 1 y 3.
-```
-
----
-
-## Ejemplo de uso
-
-### Crear una tarea
-```
-Menú de tareas:
-1. Agregar una tarea
-2. Mostrar tareas pendientes
-3. Editar una tarea
-4. Eliminar una tarea
-5. Completar una tarea
-6. Mostrar tareas completadas
-7. Salir
-Selecciona una opción: 1
-Ingresa el título de la tarea: Estudiar para el examen
-Ingresa la descripción de la tarea: Repasar los temas de matemáticas y física
-Ingresa la prioridad de la tarea (1 = Alta, 2 = Media, 3 = Baja): 1
-Tarea agregada exitosamente.
-```
-
-### Listar tareas pendientes
-```
-Menú de tareas:
-1. Agregar una tarea
-2. Mostrar tareas pendientes
-3. Editar una tarea
-4. Eliminar una tarea
-5. Completar una tarea
-6. Mostrar tareas completadas
-7. Salir
-Selecciona una opción: 2
-
-Tus tareas pendientes (1 en total) son:
-1. [Alta] Estudiar para el examen: Repasar los temas de matemáticas y física (Pendiente)
-```
-
-### Completar una tarea
-```
-Menú de tareas:
-1. Agregar una tarea
-2. Mostrar tareas pendientes
-3. Editar una tarea
-4. Eliminar una tarea
-5. Completar una tarea
-6. Mostrar tareas completadas
-7. Salir
-Selecciona una opción: 5
-
-Tus tareas pendientes (1 en total) son:
-1. [Alta] Estudiar para el examen: Repasar los temas de matemáticas y física (Pendiente)
-Ingresa el número de la tarea que deseas completar: 1
-Tarea 'Estudiar para el examen' marcada como completada.
-```
-
----
-
-### Ejemplo de una tarea en JSON
-```json
-{
-    "titulo": "Estudiar para el examen",
-    "descripcion": "Repasar los temas de matemáticas y física",
-    "prioridad": 1,
-    "completada": false
-}
-```
----
-
-## Pruebas
-
-Este proyecto incluye pruebas unitarias para garantizar el correcto funcionamiento de cada componente. Las pruebas están ubicadas en la carpeta `tests/`.
-
-Las pruebas unitarias verifican el correcto funcionamiento de los siguientes componentes:
-- Gestión de tareas (agregar, editar, eliminar, completar).
-- Validaciones de entrada del usuario.
-- Manejo de archivos JSON.
-
-### Ejecutar todas las pruebas:
-Desde el directorio raíz del proyecto, ejecuta:
-```
-python -m unittest discover tests
-```
-
----
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request, y asegúrate de incluir pruebas para cualquier funcionalidad nueva. Puedes consultar la guía oficial de GitHub para abrir un pull request aquí:
-[Cómo abrir un pull request](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
-
----
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
----
-
-## Créditos
-
-Este proyecto fue desarrollado por:
-- **Nombre del desarrollador:** Jorge Alejandro Chacón Zárate
-- **Contacto:** jorgechaconzarate@gmail.com
-- **GitHub:** [jorgechacon559](https://github.com/jorgechacon559)
+🌟 **¡Dale una estrella si te gusta el proyecto!**
