@@ -1,0 +1,260 @@
+/* ===============================================
+   RESPONSIVE UTILITIES & MOBILE OPTIMIZATIONS
+   =============================================== */
+
+/* Mobile menu button (hidden by default) */
+.mobile-menu-btn {
+  display: none !important;
+  margin-right: 12px;
+}
+
+.mobile-menu-btn span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Mobile sidebar overlay */
+.mobile-overlay {
+  display: none;
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch devices */
+  .btn {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
+  
+  .btn--sm {
+    min-height: 36px;
+    padding: 8px 16px;
+  }
+  
+  .menu a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .kpi {
+    min-height: 100px;
+  }
+  
+  .card {
+    touch-action: manipulation;
+  }
+  
+  .tab {
+    min-height: 40px;
+    padding: 10px 16px;
+  }
+  
+  /* Disable hover effects on touch devices */
+  .card:hover,
+  .kpi:hover,
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Add touch feedback */
+  .card:active,
+  .btn:active,
+  .tab:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode media query support */
+@media (prefers-color-scheme: dark) {
+  /* This could be used if user doesn't have theme preference saved */
+  body:not(.light) {
+    /* Dark theme would be applied here if implemented */
+  }
+}
+
+/* Focus styles for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--primary-solid);
+    outline-offset: 2px;
+    transition: outline 0.2s ease;
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav,
+  .sidebar,
+  .btn,
+  .modal,
+  .toast {
+    display: none !important;
+  }
+  
+  .app {
+    grid-template-columns: 1fr;
+  }
+  
+  .content {
+    padding: 0;
+  }
+  
+  .card,
+  .panel,
+  .kpi {
+    border: 1px solid #000 !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Landscape phone optimizations */
+@media (max-width: 896px) and (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    padding: 40px 0;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .section {
+    padding: 40px 0;
+  }
+  
+  .sidebar {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .nav {
+    padding: 8px 0;
+  }
+}
+
+/* Very small screens (320px) */
+@media (max-width: 320px) {
+  .container {
+    width: 100%;
+    padding: 0 8px;
+  }
+  
+  .hero h1 {
+    font-size: 24px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .kpi {
+    padding: 12px;
+  }
+  
+  .panel {
+    padding: 12px;
+  }
+  
+  .card__body {
+    padding: 12px;
+  }
+}
+
+/* Fix for iOS Safari viewport units */
+@supports (-webkit-touch-callout: none) {
+  .app {
+    min-height: -webkit-fill-available;
+  }
+  
+  .sidebar {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Loading states for better UX */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--primary-solid);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus indicators */
+.btn:focus-visible,
+.menu a:focus-visible,
+.tab:focus-visible {
+  outline: 2px solid var(--primary-solid);
+  outline-offset: 2px;
+}
+
+/* Sticky positioning fallback */
+@supports not (position: sticky) {
+  .nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .section:first-of-type {
+    margin-top: 72px;
+  }
+}

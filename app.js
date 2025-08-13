@@ -249,4 +249,187 @@ e.target.style.transform = 'translateY(0)';
 }
 });
 
+// ===============================================
+// RESPONSIVE FUNCTIONALITY
+// ===============================================
+
+// Mobile sidebar toggle
+let sidebarOpen = false;
+
+function createMobileMenuButton() {
+  const topbar = document.querySelector('.topbar__left');
+  if (!topbar || document.querySelector('.mobile-menu-btn')) return;
+
+  const menuBtn = document.createElement('button');
+  menuBtn.className = 'btn btn--ghost mobile-menu-btn';
+  menuBtn.innerHTML = '<span>☰</span>';
+  menuBtn.style.display = 'none';
+  
+  menuBtn.addEventListener('click', toggleSidebar);
+  topbar.appendChild(menuBtn);
+}
+
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.mobile-overlay');
+  
+  sidebarOpen = !sidebarOpen;
+  
+  if (sidebarOpen) {
+    sidebar.classList.add('mobile-open');
+    createOverlay();
+  } else {
+    sidebar.classList.remove('mobile-open');
+    removeOverlay();
+  }
+}
+
+function createOverlay() {
+  if (document.querySelector('.mobile-overlay')) return;
+  
+  const overlay = document.createElement('div');
+  overlay.className = 'mobile-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: block;
+  `;
+  
+  overlay.addEventListener('click', toggleSidebar);
+  document.body.appendChild(overlay);
+}
+
+function removeOverlay() {
+  const overlay = document.querySelector('.mobile-overlay');
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+// Responsive handler
+function handleResize() {
+  const isMobile = window.innerWidth <= 1024;
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  
+  if (isMobile) {
+    if (menuBtn) {
+      menuBtn.style.display = 'block';
+    }
+    // Close sidebar on resize to mobile
+    if (sidebarOpen) {
+      toggleSidebar();
+    }
+  } else {
+    if (menuBtn) {
+      menuBtn.style.display = 'none';
+    }
+    // Remove mobile classes on desktop
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.remove('mobile-open');
+    removeOverlay();
+    sidebarOpen = false;
+  }
+}
+
+// Chart responsive
+function updateChartSize() {
+  const canvas = document.getElementById('cash-flow-chart');
+  if (!canvas) return;
+  
+  const container = canvas.parentElement;
+  const containerWidth = container.clientWidth;
+  
+  // Update canvas size based on container
+  if (containerWidth < 400) {
+    canvas.width = containerWidth - 20;
+    canvas.height = 200;
+  } else if (containerWidth < 600) {
+    canvas.width = containerWidth - 30;
+    canvas.height = 250;
+  } else {
+    canvas.width = containerWidth - 40;
+    canvas.height = 300;
+  }
+  
+  // Redraw chart with new size
+  initSimpleChart();
+}
+
+// Mobile-friendly table scrolling
+function makeTablesResponsive() {
+  const tables = document.querySelectorAll('.table');
+  
+  tables.forEach(table => {
+    if (!table.parentElement.classList.contains('table-responsive')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-responsive';
+      wrapper.style.cssText = `
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--muted);
+        border-radius: 12px;
+        margin: 16px 0;
+      `;
+      
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+  });
+}
+
+// Touch-friendly interactions
+function addTouchSupport() {
+  // Make cards touch-friendly
+  const cards = document.querySelectorAll('.card, .kpi, .pay-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.98)';
+    });
+    
+    card.addEventListener('touchend', function() {
+      this.style.transform = 'scale(1)';
+    });
+  });
+}
+
+// Initialize responsive features
+function initResponsive() {
+  createMobileMenuButton();
+  handleResize();
+  makeTablesResponsive();
+  addTouchSupport();
+  
+  // Event listeners
+  window.addEventListener('resize', () => {
+    handleResize();
+    updateChartSize();
+  });
+  
+  // Close sidebar when clicking menu links on mobile
+  menu.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024 && sidebarOpen) {
+        setTimeout(toggleSidebar, 100);
+      }
+    });
+  });
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', initResponsive);
+
+// Handle orientation change
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => {
+    handleResize();
+    updateChartSize();
+  }, 100);
+});
+
 })();
