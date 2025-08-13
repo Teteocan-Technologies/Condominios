@@ -264,9 +264,10 @@ function createMobileMenuButton() {
   menuBtn.className = 'btn btn--ghost mobile-menu-btn';
   menuBtn.innerHTML = '<span>☰</span>';
   menuBtn.style.display = 'none';
+  menuBtn.setAttribute('aria-label', 'Abrir menú');
   
   menuBtn.addEventListener('click', toggleSidebar);
-  topbar.appendChild(menuBtn);
+  topbar.insertBefore(menuBtn, topbar.firstChild);
 }
 
 function toggleSidebar() {
@@ -278,9 +279,11 @@ function toggleSidebar() {
   if (sidebarOpen) {
     sidebar.classList.add('mobile-open');
     createOverlay();
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
   } else {
     sidebar.classList.remove('mobile-open');
     removeOverlay();
+    document.body.style.overflow = ''; // Restore scrolling
   }
 }
 
@@ -288,19 +291,10 @@ function createOverlay() {
   if (document.querySelector('.mobile-overlay')) return;
   
   const overlay = document.createElement('div');
-  overlay.className = 'mobile-overlay';
-  overlay.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: block;
-  `;
+  overlay.className = 'mobile-overlay show';
   
   overlay.addEventListener('click', toggleSidebar);
+  overlay.addEventListener('touchstart', toggleSidebar);
   document.body.appendChild(overlay);
 }
 
@@ -320,19 +314,18 @@ function handleResize() {
     if (menuBtn) {
       menuBtn.style.display = 'block';
     }
-    // Close sidebar on resize to mobile
-    if (sidebarOpen) {
-      toggleSidebar();
-    }
   } else {
     if (menuBtn) {
       menuBtn.style.display = 'none';
     }
     // Remove mobile classes on desktop
     const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.remove('mobile-open');
+    if (sidebar) {
+      sidebar.classList.remove('mobile-open');
+    }
     removeOverlay();
     sidebarOpen = false;
+    document.body.style.overflow = ''; // Restore scrolling
   }
 }
 
@@ -342,11 +335,13 @@ function updateChartSize() {
   if (!canvas) return;
   
   const container = canvas.parentElement;
+  if (!container) return;
+  
   const containerWidth = container.clientWidth;
   
   // Update canvas size based on container
   if (containerWidth < 400) {
-    canvas.width = containerWidth - 20;
+    canvas.width = Math.max(containerWidth - 20, 250);
     canvas.height = 200;
   } else if (containerWidth < 600) {
     canvas.width = containerWidth - 30;
@@ -357,7 +352,7 @@ function updateChartSize() {
   }
   
   // Redraw chart with new size
-  initSimpleChart();
+  setTimeout(() => initSimpleChart(), 100);
 }
 
 // Mobile-friendly table scrolling
@@ -390,11 +385,15 @@ function addTouchSupport() {
   cards.forEach(card => {
     card.addEventListener('touchstart', function() {
       this.style.transform = 'scale(0.98)';
-    });
+    }, { passive: true });
     
     card.addEventListener('touchend', function() {
       this.style.transform = 'scale(1)';
-    });
+    }, { passive: true });
+    
+    card.addEventListener('touchcancel', function() {
+      this.style.transform = 'scale(1)';
+    }, { passive: true });
   });
 }
 
@@ -408,7 +407,14 @@ function initResponsive() {
   // Event listeners
   window.addEventListener('resize', () => {
     handleResize();
-    updateChartSize();
+    setTimeout(updateChartSize, 100);
+  });
+  
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      handleResize();
+      updateChartSize();
+    }, 300);
   });
   
   // Close sidebar when clicking menu links on mobile
@@ -421,15 +427,11 @@ function initResponsive() {
   });
 }
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', initResponsive);
-
-// Handle orientation change
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    handleResize();
-    updateChartSize();
-  }, 100);
-});
+// Initialize on DOM load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initResponsive);
+} else {
+  initResponsive();
+}
 
 })();
